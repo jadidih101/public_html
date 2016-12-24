@@ -27,7 +27,7 @@ def connecttodb():
     # Connect to MySQL database """
     
     try:
-        conn = pymysql.connect(host='localhost', port=3306, user='root', password='Potato123', db='mygermanwords', charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor);
+        conn = pymysql.connect(host='localhost', port=3306, user='root', password='Potato!@#', db='mygermanwords', charset='utf8mb4',cursorclass=pymysql.cursors.DictCursor);
 
     except Error as e:
         print(e)

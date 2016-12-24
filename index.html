@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="cgi-bin/myjs.js"></script>
+        <script>
+            var word_included = "";
+            var lastselection = "";
+            var wordtype = "";
+
+            function load(){
+                //alert("include: "+word_included);
+                //openCity(event,"wordpractice");
+                //$("#wptab").focus();
+                var event = new MouseEvent('click', {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': true
+                });
+                var cb = document.getElementById('wptab');
+                cb.dispatchEvent(event);
+                //$("#wptab").trigger(document.createEvent("MouseEvents"),"clicked");
+                //$("#wptab").trigger(event);
+            };
+            window.onload = load;
+            
+            function openCity(evt, tabName) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                // Get all elements with class="tablinks" and remove the class "active"
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+
+                // Show the current tab, and add an "active" class to the link that opened the tab
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+
+                    
+        </script>
+        <style>
+            body, html, #container {
+                height: 100%;
+            }
+            .incWord {
+                vertical-align: middle;
+                 /*width: 40px;*/
+            }    
+            ul.tab {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+            }
+
+            /* Float the list items side by side */
+            ul.tab li {float: left;}
+
+            /* Style the links inside the list items */
+            ul.tab li a {
+                display: inline-block;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+            /* Change background color of links on hover */
+            ul.tab li a:hover {background-color: #ddd;}
+
+            /* Create an active/current tablink class */
+            ul.tab li a:focus, .active {background-color: #ccc;}
+
+            /* Style the tab content */
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .omlaut {
+                padding: 0;
+                border: none;
+                background: none;
+                margin:  2px;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="container">
+        <ul class="tab">
+            <li ><a id="wptab" href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'wordpractice')">Word Practice</a></li>
+            <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'addwords')">Add Words</a></li>
+            <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</a></li>
+        </ul>
+        <div id="Tokyo" class="tabcontent">
+          <h3>Tokyo</h3>
+          <p>Tokyo is the capital of Japan.</p>
+        </div>        
+        <div id="wordpractice" class="tabcontent" >
+        <!--div id="wordpractice" style="width: 550px; border: 4px solid red ; padding: 25px; margin: 10px"-->
+            <details style=" line-height: 30px;  padding: 2px;">
+                <summary style="display: block; width: 70px; inline">Options</summary>                
+                <!--form action=".\"   name="Choices" id="choicearea"-->
+                    <span style="font-weight: bold;">Include:</span>
+
+                    <input class="incWord" id="incnouns"  name="incNouns" type="checkbox" checked/>Nouns
+                    <input class="incWord" id="incverbs"  name="incVerbs" type="checkbox" checked/>Verbs
+                    <input class="incWord" id="incads"  name="incAdjAdv" type="checkbox"/>AdjAdv
+                    <input class="incWord" id="incphrases"  name="incPhrases" type="checkbox"/>Phrases
+
+                    <span style="margin-left: 30px; font-weight: bold;">Direction:</span>
+                    <input type="radio" id="engtogerm" name="direction" value="EngToGer" />English to German
+                    <input type="radio" name="direction" value="GerToEng" checked="checked"/>German to English
+                <!--/form-->               
+            </details>
+        
+            <div style="line-height: 30px;">
+                <button id="getword">Get word</button>
+                <button id="showTrans" disabled>show translation</button>
+                <button id="pons" accesskey="p">Pons</button>
+                <button id="dictcc">Dict.cc</button>
+                <button id="bab">bab</button>
+                <button id="verbix" disabled>Verbix</button><br>
+                
+        
+                <span id="showword" style="margin-right: 10px;"></span>
+                <div id="typegermword" hidden>Translation: <input type="text" name="trans" onKeyDown=""/>
+                    <button class="omlaut" id="uuml">&uuml;</button><button class="omlaut" id="ouml">&ouml;</button><button class="omlaut" id="auml">&auml;</button ><button class="omlaut" id="szlig">&szlig;</button>
+                    <button id="lookuppons">P</button><button id="lookupdict">D</button>
+                    <button id="lookupbab">B</button><button id="lookupverbix">V</button>
+                </div>
+        
+                <strong id="showtranslation"></strong><button id="showdlg" style="margin-left: 5px;" hidden>Change Translation</button>
+            </div>
+            <dialog id="getnewword" style="line-height: 30px;">
+                <div>Type translation: <input type="text" name="newtrans"/></div><br>
+                <button id="canceldlg">Cancel</button><button id="posttodb" style="float: right;">Post change</button>
+                
+            </dialog>
+            <dialog id="confirmdlg" >
+                <div>Are you sure you want to change translation from:<br>
+                    <span id="oldtransval" style="font-weight: bold;margin-left: 5px"></span><br>
+                    To:<br>
+                    <span id="newtransval" style="font-weight: bold; margin-left: 5px"></span><br>
+                </div>
+                <button id="cancelpost">Cancel</button><button id="confirmpost" style="float: right;">Confirm</button>                
+            </dialog>
+        </div>
+        <iframe id="ponsif" src="" style="width: 100%; height: 70%; border:2px solid grey;" name="ponsif_a"></iframe>
+        <div id="showpons"></div>
+    </div>
+    </body>
+</html>

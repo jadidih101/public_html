@@ -73,9 +73,6 @@ $(document).ready(function(){
         var url="http://en.bab.la/dictionary/german-english/";
         url += localStorage.germword+".html";
         window.open(url,'bab');
-        //
-        //$("#ponsif").attr("src",url);
-        //$("#showpons").html("<p><a href=\""+url+"\" target=\"iframe_a\"></a></p>");   
     });
     $("#pons").click(function(){
         var url="http://de.pons.com/%C3%BCbersetzung?l=deen&q=";

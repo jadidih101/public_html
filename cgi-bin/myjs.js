@@ -172,19 +172,6 @@ $(document).ready(function(){
         return false;  
         }
     });
-//    $("input").bind("keydown", (function (event) {
-//        if (event.which == 13) {
-//            showtranslation();
-//            //$('input[name = name="trans"]').click();
-//            return false;
-//        }
-//        if (event.which == 65) {
-// //           if (event.altkey )
-//                return String.fromCharCode(252);  
-//        
-//        }
-//        return String.fromCharCode(event.which);
-//    }));
     $("#showTrans").click(showtranslation);
 
     $("#showdlg").click(function(){
@@ -220,8 +207,6 @@ $(document).ready(function(){
     });
     $("#szlig").click(function(){
 //        insertAtCursor($('input[name="trans"]')[0],'ß');
-//        newtxt = $('input[name="trans"]').val()+'ß';
-//        $('input[name="trans"]').val(newtxt);        
         var cursorPos = $('input[name="trans"]').prop('selectionStart');
         var v = $('input[name="trans"]').val();
         var textBefore = v.substring(0,  cursorPos);
@@ -230,8 +215,6 @@ $(document).ready(function(){
     });
     $("#uuml").click(function(){
 //        insertAtCursor($('input[name="trans"]')[0],'ü');
-//        newtxt = $('input[name="trans"]').val()+'ü';
-//        $('input[name="trans"]').val(newtxt);        
         var cursorPos = $('input[name="trans"]').prop('selectionStart');
         var v = $('input[name="trans"]').val();
         var textBefore = v.substring(0,  cursorPos);
@@ -241,8 +224,6 @@ $(document).ready(function(){
     });
     $("#ouml").click(function(){
 //        insertAtCursor($('input[name="trans"]')[0],'ö');
-//        newtxt = $('input[name="trans"]').val()+'ö';
-//        $('input[name="trans"]').val(newtxt);
         var cursorPos = $('input[name="trans"]').prop('selectionStart');
         var v = $('input[name="trans"]').val();
         var textBefore = v.substring(0,  cursorPos);
